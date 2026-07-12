@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  name         String
+  email        String      @unique
+  password     String
+  profileImage String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  contents   Content[]
+  brandDeals BrandDeal[]
+  assets     Asset[]
+}
+
+model Content {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  platform    String
+  contentDate DateTime
+  status      String   @default("PLANNED")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BrandDeal {
+  id        String   @id @default(cuid())
+  brandName String
+  campaign  String
+  amount    Float
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Asset {
+  id           String   @id @default(cuid())
+  originalName String
+  fileName     String
+  fileType     String
+  fileSize     Int
+  fileUrl      String
+  createdAt    DateTime @default(now())
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
