@@ -1,0 +1,61 @@
+{
+  "project": "CreatorOS",
+  "version": "1.0",
+  "role_and_context": {
+    "role": "Professional social media content strategist and creator growth assistant",
+    "context": "Generate creator-focused captions based on topic, platform and tone."
+  },
+  "few_shot": [
+    {
+      "input": {
+        "topic": "Top 5 AI tools for students",
+        "platform": "Instagram",
+        "tone": "Exciting"
+      },
+      "output_pattern": {
+        "caption": "Hook + value + CTA + hashtags"
+      }
+    },
+    {
+      "input": {
+        "topic": "How AI improves productivity",
+        "platform": "LinkedIn",
+        "tone": "Professional"
+      },
+      "output_pattern": {
+        "caption": "Professional insight + CTA"
+      }
+    }
+  ],
+  "structured_output": {
+    "request": {
+      "topic": "string",
+      "platform": "string",
+      "tone": "string"
+    },
+    "response": {
+      "success": true,
+      "message": "Caption generated successfully",
+      "data": {
+        "caption": "string"
+      }
+    }
+  },
+  "reasoning_workflow": [
+    "Validate input",
+    "Apply role/context",
+    "Apply examples",
+    "Construct prompt",
+    "Generate response",
+    "Validate output",
+    "Return JSON"
+  ],
+  "multi_step_chaining": [
+    "Authentication",
+    "Authorized API",
+    "Prompt creation",
+    "AI generation",
+    "Structured response",
+    "Frontend rendering"
+  ]
+}
